@@ -1,5 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Hello Wilder !</h1>
+    <h1>Musique Sauvage</h1>
+    <div class="indexContainer">
+        <img class="logo" src="/assets/images/logo_wild_playlist.gif" alt="logo wild playlist" width="150" height="auto">
+    </div>
+    {% include 'components/_video-player.html.twig' %}
 {% endblock %}
