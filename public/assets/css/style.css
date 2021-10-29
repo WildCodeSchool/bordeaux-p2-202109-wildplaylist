@@ -48,12 +48,3 @@ h1 {
     }
 }
 /* Additional styling */
-
-.logo {
-    justify-content: center;
-}
-
-.indexContainer {
-    display: flex;
-    justify-content: center;
-}
