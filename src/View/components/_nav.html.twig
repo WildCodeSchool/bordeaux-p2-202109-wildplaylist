@@ -1,19 +1,15 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark ">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/index.php" fill="currentColor">
+        <a class="navbar-brand" href="/index.php">
             <i class="fas fa-home"></i>
                 Accueil
         </a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-auto mb-lg-auto">
-            </ul>
-            <li class="d-flex">
-                {% include 'components/_loginbox.html.twig' %}
-                <a class="navbar-brand" href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Profil
-                    <img src="https://avatars.githubusercontent.com/u/90577398" alt="logo github" width="40" height="auto" class="d-inline-block align-text-center">
-                </a>
-            </li>
+        <div id="navbarSupportedContent">
+            {% include 'components/_loginbox.html.twig' %}
+            <a class="navbar-brand" href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Profil
+                <img src="https://avatars.githubusercontent.com/u/90577398" alt="logo github" width="40" height="auto" class="d-inline-block align-text-center rounded-circle">
+            </a>
         </div>
     </div>
 </nav>
