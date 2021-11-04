@@ -11,7 +11,11 @@ class SongManager extends AbstractManager
      */
     public function showSongsByDate(string $date): array
     {
-        $query = ("SELECT *, user.pseudo FROM " . self::TABLE . " JOIN user ON user.id = song.user_id WHERE posted_at =:date ORDER BY rating DESC");
+        $query = ("SELECT *, user.pseudo
+                    FROM " . self::TABLE . "
+                    JOIN user ON user.id = song.user_id
+                    WHERE posted_at =:date
+                    ORDER BY rating DESC");
         $statement = $this->pdo->prepare($query);
         $statement->bindValue('date', $date, \PDO::PARAM_STR);
         $statement->execute();
@@ -36,6 +40,5 @@ class SongManager extends AbstractManager
         $statement->execute();
 
         return $statement->fetchAll();
-
     }
 }
