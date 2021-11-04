@@ -27,6 +27,7 @@ class SongManager extends AbstractManager
         $statement->bindValue('url', $song['url'], \PDO::PARAM_STR);
         $statement->execute();
         return (int)$this->pdo->lastInsertId();
+    }
 
     public function selectAllByUserId($id)
     {
