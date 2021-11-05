@@ -16,7 +16,7 @@ class UserController extends AbstractController
                 if (password_verify($_POST['password'], $userData['password'])) {
                     $_SESSION['user'] = $userData;
                 }
-            } else {
+            } elseif (isset($_POST['register'])) {
                 $pseudo   = trim($_POST['pseudo']);
                 $mail     = trim($_POST['mail']);
                 $password = trim($_POST['password']);
