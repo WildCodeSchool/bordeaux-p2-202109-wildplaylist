@@ -9,7 +9,7 @@
 
 namespace App\Controller;
 
-use _HumbugBox5ccdb2ccdb35\Nette\Utils\DateTime;
+use DateTime;
 use App\Model\SongManager;
 
 class HomeController extends AbstractController
