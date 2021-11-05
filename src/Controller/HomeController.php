@@ -9,6 +9,9 @@
 
 namespace App\Controller;
 
+use _HumbugBox5ccdb2ccdb35\Nette\Utils\DateTime;
+use App\Model\SongManager;
+
 class HomeController extends AbstractController
 {
     /**
@@ -21,6 +24,13 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Home/index.html.twig');
+        $songManager = new SongManager();
+        $date = new DateTime();
+        $searchDate = $date->format('Y-m-d');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $searchDate = $_POST['date'];
+        }
+        $songs = $songManager->showSongsByDate($searchDate);
+        return $this->twig->render('Home/index.html.twig', ['songs' => $songs]);
     }
 }

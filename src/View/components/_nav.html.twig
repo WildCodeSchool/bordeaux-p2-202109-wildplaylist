@@ -1,19 +1,31 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
+<nav class="navbar navbar-expand navbar-dark bg-dark ">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#" fill="currentColor">
+        <a class="navbar-brand" href="/">
             <i class="fas fa-home"></i>
-                Accueil
         </a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-auto mb-lg-auto">
+        <div id="navbarSupportedContent">
+            {% include 'components/_loginbox.html.twig' %}
+            {% include 'components/_registerbox.html.twig' %}
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    {{ session.user.pseudo }}
+                    <a class="btn" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://avatars.githubusercontent.com/{% if (session.user) %}{{ session.user.github_name }}{% else %}github{% endif %}"
+                             alt="logo github" width="40" height="auto" class="d-inline-block align-text-center rounded-circle">
+                    </a>
+                    {% if (session.user) %}
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown ">
+                        <a class="dropdown-item" href="user?id={{ session.user.id }}">Mon Compte</a>
+                        <a class="dropdown-item" href="logout">Deconnexion</a>
+                    </div>
+                    {% else %}
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown ">
+                        <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#registerModal">S'inscrire</a>
+                        <a class="dropdown-item" href="" data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</a>
+                    </div>
+                    {% endif %}
+                </li>
             </ul>
-            <li class="d-flex">
-                {% include 'components/_loginbox.html.twig' %}
-                <a class="navbar-brand" href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Profil
-                    <img src="https://avatars.githubusercontent.com/u/90577398" alt="logo github" width="40" height="auto" class="d-inline-block align-text-center">
-                </a>
-            </li>
         </div>
     </div>
 </nav>
