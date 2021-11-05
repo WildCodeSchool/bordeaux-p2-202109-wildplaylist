@@ -6,21 +6,21 @@
             </div>
             <div class="modal-body">
                 <h3 class='text-muted text-center'>Inscrivez-vous pour partager vos musiques</h3>
-                <form class="">
+                <form class="" method="post">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="Pseudo">
+                        <input type="text" name="pseudo" class="form-control rounded-4" id="floatingInput" placeholder="Pseudo">
                         <label for="floatingInput">Pseudo</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com">
+                        <input type="email" name="mail" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com">
                         <label for="floatingInput">Adresse mail</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password">
+                        <input type="password" name="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password">
                         <label for="floatingPassword">Mot de passe</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="Nom Github">
+                        <input type="text" name="github-name" class="form-control rounded-4" id="floatingInput" placeholder="Nom Github">
                         <label for="floatingInput">Nom Github</label>
                     </div>
                     <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">S'inscrire</button>

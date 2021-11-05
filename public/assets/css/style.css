@@ -32,7 +32,7 @@ h1 {
 }
 
 #bootstrap-override .dropdown-menu {
-    left: -115px;
+    left: -100px;
 }
 /* Flickering animation */
 @keyframes flicker {
