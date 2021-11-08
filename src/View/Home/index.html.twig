@@ -22,6 +22,11 @@
                             <br>{{ song.url }}
                             <br>Partagé par {{ song.pseudo }}</li> {# Pseudo de l'utilisateur #}
                     {% endfor %}
+                    <form action='addSong' method='POST'>
+                        <input type='text' name='title'>
+                        <input type='text' name='url'>
+                        <button class='btn btn-primary'>Add</button>
+                    </form>
                 </ul>
             </div>
         </div>

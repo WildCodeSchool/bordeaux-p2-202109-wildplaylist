@@ -25,10 +25,15 @@ class SongManager extends AbstractManager
     /**
      * Insert new song in database
      */
-    public function insert(array $song): int
+    public function insert(array $song, $userId): int
     {
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`url`) VALUES (:url)");
-        $statement->bindValue('url', $song['url'], \PDO::PARAM_STR);
+        $statement = $this->pdo->prepare('
+        INSERT INTO ' . self::TABLE . '(title, url, posted_at, user_id)
+        VALUES (:title, :url, NOW(), :user_id)
+        ');
+        $statement->bindValue(':title', $song['title'], \PDO::PARAM_STR);
+        $statement->bindValue(':url', $song['url'], \PDO::PARAM_STR);
+        $statement->bindValue(':user_id', $userId, \PDO::PARAM_INT);
         $statement->execute();
         return (int)$this->pdo->lastInsertId();
     }
