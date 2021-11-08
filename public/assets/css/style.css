@@ -35,7 +35,7 @@ h1 {
     left: -100px;
 }
 /* Flickering animation */
-@keyframes flicker {
+/*@keyframes flicker {
     0%, 18%, 22%, 25%, 53%, 57%, 100% {
         text-shadow:
                 0 0 4px #fff,
@@ -50,5 +50,5 @@ h1 {
     20%, 24%, 55% {
         text-shadow: none;
     }
-}
+}*/
 /* Additional styling */
