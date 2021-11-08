@@ -28,7 +28,9 @@ class HomeController extends AbstractController
         $date = new DateTime();
         $searchDate = $date->format('Y-m-d');
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $searchDate = $_POST['date'];
+            if ($_POST['date'] !== '') {
+                $searchDate = $_POST['date'];
+            }
         }
         $songs = $songManager->showSongsByDate($searchDate);
         return $this->twig->render('Home/index.html.twig', ['songs' => $songs]);

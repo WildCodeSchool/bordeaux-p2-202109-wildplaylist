@@ -4,17 +4,22 @@ namespace App\Controller;
 
 use App\Model\SongManager;
 use App\Model\UserManager;
+use DateTime;
 
 class UserController extends AbstractController
 {
     public function connect(): string
     {
+        $songManager = new SongManager();
+        $date = new DateTime();
+        $searchDate = $date->format('Y-m-d');
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['login'])) {
                 $userManager = new UserManager();
                 $userData = $userManager->selectOneByEmail($_POST['mail']);
                 if (password_verify($_POST['password'], $userData['password'])) {
                     $_SESSION['user'] = $userData;
+                    header('Location: /');
                 }
             } elseif (isset($_POST['register'])) {
                 $pseudo   = trim($_POST['pseudo']);
@@ -49,6 +54,7 @@ class UserController extends AbstractController
         }
         return $this->twig->render('Home/index.html.twig', [
             'register_success' => $_GET['register'] ?? null,
+            'songs' => $songManager->showSongsByDate($searchDate),
         ]);
     }
 
