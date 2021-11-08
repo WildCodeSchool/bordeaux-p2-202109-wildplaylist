@@ -16,4 +16,5 @@ return [
     'items/delete' => ['ItemController', 'delete',],
     'user' => ['UserController', 'show', ['id']],
     'logout' => ['UserController', 'logout',],
+    'addSong' => ['SongController', 'add'],
 ];
