@@ -14,8 +14,13 @@
         <div class="col-5">
             <div class="p-2 flex-shrink-1">
                 <ul>
+                    {% set songUrl = '' %}
                     {% for song in songs %}
-                        <li class='text-light'>{{ song.rating }} <i class="fas fa-arrow-up"></i> {{ song.title }} <i class="fas fa-play"></i><br>{{ song.url }}<br>Partagé par {{ song.pseudo }}</li>
+                        <li class='text-light'>{{ song.rating }} <i class="fas fa-arrow-up"></i> {# Système de votes #}
+                            {{ song.title }} {# Titre de la musique #}
+                            <button type="button" data-url='{{ song.url }}' class='play-button'><i class="fas fa-play"></i></button> {# Bouton de lecture avec fonction Ajax #}
+                            <br>{{ song.url }}
+                            <br>Partagé par {{ song.pseudo }}</li> {# Pseudo de l'utilisateur #}
                     {% endfor %}
                 </ul>
             </div>
@@ -26,4 +31,7 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block javascript %}
+    <script src="assets/scripts/changeUrlSong.js"></script>
 {% endblock %}
