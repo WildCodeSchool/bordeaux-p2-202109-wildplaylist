@@ -46,4 +46,12 @@ class SongManager extends AbstractManager
 
         return $statement->fetchAll();
     }
+
+    public function countSongsOfByDay(string $date)
+    {
+        $statement = $this->pdo->prepare("SELECT COUNT(*) as count FROM song WHERE posted_at= DATE ( NOW() )");
+        $statement->bindValue(':date', $date, \PDO::PARAM_STR);
+        $statement->execute();
+        return $statement->fetch()['count'];
+    }
 }
