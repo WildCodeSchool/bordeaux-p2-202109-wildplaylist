@@ -73,6 +73,15 @@ class UserController extends AbstractController
         return $this->twig->render('User/user.html.twig', [
             'user'  => $user,
             'songs' => $songs,
-            ]);
+        ]);
+    }
+
+    public function count(): string
+    {
+        $songManager = new SongManager();
+        $count = $songManager->countSongsOfByDay(DATE(NOW));
+        return $this->twig->render('Home/index.html.twig', [
+            'count' => $count,
+        ]);
     }
 }
