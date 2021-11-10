@@ -13,6 +13,7 @@ class UserController extends AbstractController
         $songManager = new SongManager();
         $date = new DateTime();
         $searchDate = $date->format('Y-m-d');
+        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['login'])) {
                 $userManager = new UserManager();
@@ -22,11 +23,11 @@ class UserController extends AbstractController
                     header('Location: /');
                 }
             } elseif (isset($_POST['register'])) {
+                $userManager = new UserManager();
                 $pseudo   = trim($_POST['pseudo']);
                 $mail     = trim($_POST['mail']);
                 $password = trim($_POST['password']);
                 $github   = trim($_POST['github-name']);
-                $errors = [];
                 if (empty($pseudo)) {
                     $errors['errorPseudo'] =  'Choisis un pseudo';
                 }
@@ -41,6 +42,12 @@ class UserController extends AbstractController
                 }
                 if (empty($github)) {
                     $errors['errorGithub'] = 'Merci d\'entrer ton nom github (Si tu veux voir afficher ta photo :))';
+                }
+                if ($mail === $userManager->selectOneByEmail($mail)['mail']) {
+                    $errors['errorMail2'] = 'Cette adresse est déjà utilisée, merci d\'en choisir une autre';
+                }
+                if ($github === $userManager->selectOneByEmail($mail)['github_name']) {
+                    $errors['errorGithub2'] = 'Ce nom Github est déjà utilisé, merci d\'en choisir un autre';
                 }
                 if (count($errors) === 0) {
                     $userManager = new UserManager();
@@ -61,9 +68,10 @@ class UserController extends AbstractController
         }
         return $this->twig->render('Home/index.html.twig', [
             'register_success' => $_GET['register'] ?? null,
-            'songs' => $songManager->showSongsByDate($searchDate),
+            'songs'            => $songManager->showSongsByDate($searchDate),
             'has_already_post' => $hasAlreadyPost,
-            'count' => $songManager->countSongsOfByDay($searchDate),
+            'count'            => $songManager->countSongsOfByDay($searchDate),
+            'errors'           => $errors,
         ]);
     }
 
