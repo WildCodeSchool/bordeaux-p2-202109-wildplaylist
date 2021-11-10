@@ -17,7 +17,7 @@ class UserManager extends AbstractManager
     public function create(array $userData)
     {
         $statement = $this->pdo->prepare('
-        INSERT INTO user (pseudo, mail, password, github_name, is_admin) 
+        UPDATE user (pseudo, mail, password, github_name, is_admin) 
         VALUES (:pseudo, :mail, :password, :github_name, false)
         ');
         $statement->bindValue(':pseudo', $userData['pseudo'], \PDO::PARAM_STR);
@@ -35,5 +35,17 @@ class UserManager extends AbstractManager
         $statement->execute();
 
         return $statement->fetch();
+    }
+
+    public function update($userData, $userId): bool
+    {
+        $statement = $this->pdo->prepare('
+        UPDATE user SET pseudo=:pseudo
+        WHERE id = :id
+        ');
+        $statement->bindValue('id', $userId, \PDO::PARAM_INT);
+        $statement->bindValue(':pseudo', $userData['pseudo'], \PDO::PARAM_STR);
+
+        return $statement->execute();
     }
 }
