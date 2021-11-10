@@ -20,7 +20,7 @@
                     </a>
                     {% if (session.user) %}
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown ">
-                        <a class="dropdown-item" href="user?id={{ session.user.id }}">Mon Compte</a>
+                        <a class="dropdown-item" href="/user?id={{ session.user.id }}">Mon Compte</a>
                         <a class="dropdown-item" href="logout">Deconnexion</a>
                     </div>
                     {% else %}

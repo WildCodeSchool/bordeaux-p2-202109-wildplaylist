@@ -15,6 +15,7 @@ return [
     'items/add' => ['ItemController', 'add',],
     'items/delete' => ['ItemController', 'delete',],
     'user' => ['UserController', 'show', ['id']],
+    'user/edit' => ['UserController', 'edit', ['id']],
     'logout' => ['UserController', 'logout',],
     'addSong' => ['SongController', 'add'],
 ];
