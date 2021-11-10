@@ -21,15 +21,15 @@
                             <button type="button" data-url='{{ song.url }}' class='play-button'><i class="fas fa-play"></i></button> {# Bouton de lecture avec fonction Ajax #}
                             <br>Partagé par {{ song.pseudo }}</li> {# Pseudo de l'utilisateur #}
 
-
-
                     {% endfor %}
-                    {% if count < 10 %}
+                    {% if count >= 10  %}
+                        Vous ne pouvez plus poster de musique aujourd'hui, revenez demain :)
+                    {% elseif  has_already_post != false %}
+                       Vous avez déjà posté une musique
+                    {% else %}
                         {% include 'components/_playlist.html.twig' %}
                         <a class="" href="" data-bs-toggle="modal" data-bs-target="#addingModal"><i class="fas fa-plus-circle"></i></a>
-                    {% elseif count >= 10 %}
                     {% endif %}
-
 
                 </ul>
             </div>
