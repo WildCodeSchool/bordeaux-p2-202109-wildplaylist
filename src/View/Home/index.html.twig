@@ -15,12 +15,18 @@
                         <li class="list-group-item bg-secondary text-white">{{ song.rating }} <i class="fas fa-arrow-up"></i>
                             <button type="button" data-url='{{ song.url }}' class='play-button btn-sm btn-light'><i class="fas fa-play-circle"></i></button> {# Système de votes #}
                             {{ song.title }} {# Titre de la musique #}
-                            Partagé par
-                            <a class="name-user-sharing" href="/user?id={{ song.user_id }}"><img src="https://avatars.githubusercontent.com/{{ song.github_name }}"
-                                                                                                 alt="{{ song.github_name }}" width="30" height="auto" class="d-inline-block align-text-center rounded-circle"></a>
-                        </li> {# Pseudo de l'utilisateur #}
+                            <button type="button" data-url='{{ song.url }}' class='play-button'><i class="fas fa-play"></i></button> {# Bouton de lecture avec fonction Ajax #}
+                            <br>Partagé par {{ song.pseudo }}</li> {# Pseudo de l'utilisateur #}
+
                     {% endfor %}
-                    {% include 'components/_playlist.html.twig' %}
+                    {% if count >= 10  %}
+                        Vous ne pouvez plus poster de musique aujourd'hui, revenez demain :)
+                    {% elseif  has_already_post != false %}
+                       Vous avez déjà posté une musique
+                    {% else %}
+                        {% include 'components/_playlist.html.twig' %}
+                        <a class="" href="" data-bs-toggle="modal" data-bs-target="#addingModal"><i class="fas fa-plus-circle"></i></a>
+                    {% endif %}
                 </ul>
                 <div class="d-flex justify-content-end">
                     {% if session %}

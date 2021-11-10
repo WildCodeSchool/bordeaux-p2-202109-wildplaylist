@@ -52,9 +52,18 @@ class UserController extends AbstractController
                 }
             }
         }
+
+        $hasAlreadyPost = false;
+
+        if (isset($_SESSION['user']['id'])) {
+            $userManager = new UserManager();
+            $hasAlreadyPost = $userManager->hasAlreadyPost($_SESSION['user']['id']);
+        }
         return $this->twig->render('Home/index.html.twig', [
             'register_success' => $_GET['register'] ?? null,
             'songs' => $songManager->showSongsByDate($searchDate),
+            'has_already_post' => $hasAlreadyPost,
+            'count' => $songManager->countSongsOfByDay($searchDate),
         ]);
     }
 
@@ -73,6 +82,15 @@ class UserController extends AbstractController
         return $this->twig->render('User/user.html.twig', [
             'user'  => $user,
             'songs' => $songs,
-            ]);
+        ]);
+    }
+
+    public function count(): string
+    {
+        $songManager = new SongManager();
+        $count = $songManager->countSongsOfByDay(DATE(NOW));
+        return $this->twig->render('Home/index.html.twig', [
+            'count' => $count,
+        ]);
     }
 }
