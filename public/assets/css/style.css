@@ -2,12 +2,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root {
+    --bs-primary: #2b2e34;
+    --bs-primary-rgb:43, 46, 52;
+    --bs-secondary: #222328;
+    --bs-secondary-rgb: 34, 35, 40;
+
+}
 body {
     background-color: #000000;
     font-family: 'Tomorrow', sans-serif;
     font-weight:normal;
 }
+.border-primary {
+    border-color: var(--bs-primary) !important;
+}
+.border-secondary {
+    border-color: var(--bs-secondary) !important;
 
+}
+#logo {
+    left: calc(50% - 20px);
+}
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     margin-top: 0;
     margin-bottom: 0.5rem;
@@ -16,23 +32,56 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     font-weight:bold;
     color: #ffffff;
 }
-
 p {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-family: 'Tomorrow', sans-serif;
-    font-weight:normal;
-}
-
-h1 {
-    font-size: 4.2rem;
-    animation: flicker 1.5s infinite alternate;
-    text-align: center;
     text-transform: uppercase;
 }
-
+.footer-text, .session-username {
+    font-size: 10px;
+}
 #bootstrap-override .dropdown-menu {
-    left: -100px;
+    left: calc(100% - 160px);
+}
+.name-user-sharing {
+    color: #ff9719;
+    text-decoration: none;
+}
+.calendar {
+    color: #fff;
+    background-color: #c618b8;
+    border-color: #c618b8;
+}
+.calendar:hover {
+    color: #fff;
+    background-color: #a9149e;
+    border-color: #a9149e;
+}
+.button-add-song {
+    color: #ffee32;
+}
+.button-add-song:hover {
+    color: #f1c930;
+}
+.play-button {
+    background: none;
+
+    border: none;
+    padding: 0;
+    outline: inherit;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.play-button:hover {
+    background: none;
+    border: none;
+    padding: 0;
+}
+.play-button:focus {
+    outline: 0;
+    border: none;
+}
+.calendar-block {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 /* Flickering animation */
 /*@keyframes flicker {
