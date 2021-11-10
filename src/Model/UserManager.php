@@ -47,5 +47,12 @@ class UserManager extends AbstractManager
         $statement->bindValue(':pseudo', $userData['pseudo'], \PDO::PARAM_STR);
 
         return $statement->execute();
+
+    public function hasAlreadyPost($userId)
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM song WHERE user_id=:userId AND posted_at=DATE(NOW())");
+        $statement->bindValue(':userId', $userId, \PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetch();
     }
 }

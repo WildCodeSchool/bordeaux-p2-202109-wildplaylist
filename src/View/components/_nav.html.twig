@@ -1,17 +1,22 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">
-            <i class="fas fa-home"></i>
-        </a>
+<nav class="navbar navbar-expand navbar-dark bg-secondary border-bottom border-primary">
+    <div class="container-fluid position-relative">
+        <div>
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-home"></i>
+            </a>
+        </div>
+        <div id="logo" class="d-flex justify-content-center position-absolute">
+            <img class="logo" src="/assets/images/logo_wild_playlist.gif" alt="logo wild playlist" width="40" height="auto">
+        </div>
         <div id="navbarSupportedContent">
             {% include 'components/_loginbox.html.twig' %}
             {% include 'components/_registerbox.html.twig' %}
             <ul class="navbar-nav">
+                <h6 class="nav-item session-username align-self-center mt-2">{{ session.user.pseudo }}</h6>
                 <li class="nav-item dropdown">
-                    {{ session.user.pseudo }}
-                    <a class="btn" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="btn d-flex" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://avatars.githubusercontent.com/{% if (session.user) %}{{ session.user.github_name }}{% else %}github{% endif %}"
-                             alt="logo github" width="40" height="auto" class="d-inline-block align-text-center rounded-circle">
+                             alt="logo github" width="30" height="auto" class="d-inline-block align-text-center rounded-circle">
                     </a>
                     {% if (session.user) %}
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown ">
