@@ -1,33 +1,36 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
-    <h1>Musique Sauvage</h1>
-    <div class="d-flex justify-content-center">
-        <img class="logo" src="/assets/images/logo_wild_playlist.gif" alt="logo wild playlist" width="150" height="auto">
-    </div>
-    <div class="d-flex justify-content-center">
+    <div class="calendar-block d-flex justify-content-center">
         <form action='date' method='POST'>
             <input type='date' name='date'>
-            <button class='btn btn-primary'>Ok</button>
+            <button class='calendar btn-sm btn-primary btn-rounded'><i class="fas fa-calendar-day"></i></button>
         </form>
     </div>
-    <div class="d-flex row justify-content-center">
-        <div class="col-5">
+    <div class="d-flex flex-column-reverse align-items-stretch flex-lg-row justify-content-around">
+        <div class="col-12 col-lg-5 bg-secondary shadow rounded">
             <div class="p-2 flex-shrink-1">
-                <ul>
+                <ul class="list-group list-group-flush">
                     {% set songUrl = '' %}
                     {% for song in songs %}
-                        <li class='text-light'>{{ song.rating }} <i class="fas fa-arrow-up"></i> {# Système de votes #}
+                        <li class="list-group-item bg-secondary text-white">{{ song.rating }} <i class="fas fa-arrow-up"></i>
+                            <button type="button" data-url='{{ song.url }}' class='play-button btn-sm btn-light'><i class="fas fa-play-circle"></i></button> {# Système de votes #}
                             {{ song.title }} {# Titre de la musique #}
-                            <button type="button" data-url='{{ song.url }}' class='play-button'><i class="fas fa-play"></i></button> {# Bouton de lecture avec fonction Ajax #}
-                            <br>Partagé par {{ song.pseudo }}</li> {# Pseudo de l'utilisateur #}
+                            Partagé par
+                            <a class="name-user-sharing" href="/user?id={{ song.user_id }}"><img src="https://avatars.githubusercontent.com/{{ song.github_name }}"
+                                                                                                 alt="{{ song.github_name }}" width="30" height="auto" class="d-inline-block align-text-center rounded-circle"></a>
+                        </li> {# Pseudo de l'utilisateur #}
                     {% endfor %}
                     {% include 'components/_playlist.html.twig' %}
-                    <a class="" href="" data-bs-toggle="modal" data-bs-target="#addingModal"><i class="fas fa-plus-circle"></i></a>
                 </ul>
+                <div class="d-flex justify-content-end">
+                    {% if session %}
+                        <a class="button-add-song" href="" data-bs-toggle="modal" data-bs-target="#addingModal"><i class="fas fa-plus-circle"></i></a>
+                    {% endif %}
+                </div>
             </div>
         </div>
-        <div class="col-5">
-            <div class="p-2">
+        <div class="col-12 col-lg-5 bg-secondary shadow rounded">
+            <div>
                 {% include 'components/_video-player.html.twig' %}
             </div>
         </div>
