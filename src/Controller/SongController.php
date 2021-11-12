@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Model\SongManager;
 use App\Service\SongUrlRefactor;
+use App\Service\SongTitleCollector;
 use DateTime;
 
 class SongController extends AbstractController
@@ -11,6 +12,7 @@ class SongController extends AbstractController
     public function add(): string
     {
         $songManager = new SongManager();
+        $songTitleCollector = new SongTitleCollector();
         $songUrlRefactor = new SongUrlRefactor();
         $now = new DateTime();
         $date = $now->format('Y-m-d');
@@ -23,6 +25,9 @@ class SongController extends AbstractController
                     $songUrl = $song['url'];
                     $songUrlRefactor->songUrlRefactor($songUrl);
                     $song['url'] = $songUrlRefactor->songUrlRefactor($songUrl);
+                    $videoId = $song['url'];
+                    $songTitleCollector->songTitleCollector($videoId);
+                    $song['title'] = $songTitleCollector->songTitleCollector($videoId);
                     $songManager->insert($song, $_SESSION['user']['id']);
                 }
             }
