@@ -105,6 +105,10 @@ input[type="date"] {
 .arrow-ranking {
     color: var(--color-primary);
 }
+
+.player-height{
+    height:fit-content;
+}
 /* Flickering animation */
 /*@keyframes flicker {
     0%, 18%, 22%, 25%, 53%, 57%, 100% {
