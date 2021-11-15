@@ -12,25 +12,28 @@
                 <ul class="list-group list-group-flush">
                     {% set songUrl = '' %}
                     {% for song in songs %}
-                        <li class="list-group-item bg-secondary text-white">{{ song.rating }} <i class="fas fa-arrow-up"></i>
-                            <button type="button" data-url='{{ song.url }}' class='play-button btn-sm btn-light'><i class="fas fa-play-circle"></i></button> {# Système de votes #}
+                        <li class="list-group-item bg-secondary text-white">{{ song.rating }} <i
+                                    class="fas fa-arrow-up"></i>
+                            <button type="button" data-url='{{ song.url }}' class='play-button btn-sm btn-light'><i
+                                        class="fas fa-play-circle"></i></button> {# Système de votes #}
                             {{ song.title }} {# Titre de la musique #}
-                            <button type="button" data-url='{{ song.url }}' class='play-button'><i class="fas fa-play"></i></button> {# Bouton de lecture avec fonction Ajax #}
+                            <button type="button" data-url='{{ song.url }}' class='play-button'><i
+                                        class="fas fa-play"></i></button> {# Bouton de lecture avec fonction Ajax #}
                             <br>Partagé par {{ song.pseudo }}</li> {# Pseudo de l'utilisateur #}
 
                     {% endfor %}
-                    {% if count >= 10  %}
-                        Vous ne pouvez plus poster de musique aujourd'hui, revenez demain :)
+                    {% if count >= 10 %}
+                        Vous pouvez plus poster de musique aujourd'hui, revenez demain :)
                     {% elseif  has_already_post != false %}
-                       Vous avez déjà posté une musique
+                        Vous avez déjà posté une musique
                     {% else %}
                         {% include 'components/_playlist.html.twig' %}
-                        <a class="" href="" data-bs-toggle="modal" data-bs-target="#addingModal"><i class="fas fa-plus-circle"></i></a>
+                        <a class="" href="" data-bs-toggle="modal" data-bs-target="#addingModal"><i
+                                    class="fas fa-plus-circle"></i></a>
                     {% endif %}
                 </ul>
                 <div class="d-flex justify-content-end">
                     {% if session %}
-                        <a class="button-add-song" href="" data-bs-toggle="modal" data-bs-target="#addingModal"><i class="fas fa-plus-circle"></i></a>
                     {% endif %}
                 </div>
             </div>
@@ -43,5 +46,5 @@
     </div>
 {% endblock %}
 {% block javascript %}
-    <script src="assets/scripts/changeUrlSong.js"></script>
+<script src="assets/scripts/changeUrlSong.js"></script>
 {% endblock %}
