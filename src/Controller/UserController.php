@@ -21,6 +21,8 @@ class UserController extends AbstractController
                 if (password_verify($_POST['password'], $userData['password'])) {
                     $_SESSION['user'] = $userData;
                     header('Location: /');
+                } else {
+                    $errors['wrongPass'] = 'Ce n\'est pas le bon mot de passe';
                 }
             } elseif (isset($_POST['register'])) {
                 $userManager = new UserManager();
@@ -32,7 +34,7 @@ class UserController extends AbstractController
                     $errors['errorPseudo'] =  'Choisis un pseudo';
                 }
                 if (strlen($pseudo) <= 2) {
-                    $errors['errorPseudo'] = 'Plus de 1 charactère quand même !';
+                    $errors['errorPseudo2'] = 'Plus de 1 charactère quand même !';
                 }
                 if (empty($password)) {
                     $errors['errorPass'] = 'Choisis un mot de passe';
