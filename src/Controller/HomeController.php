@@ -9,7 +9,8 @@
 
 namespace App\Controller;
 
-use _HumbugBox5ccdb2ccdb35\Nette\Utils\DateTime;
+use App\Model\UserManager;
+use DateTime;
 use App\Model\SongManager;
 
 class HomeController extends AbstractController
@@ -22,15 +23,72 @@ class HomeController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function index()
+    public function form(): string
     {
         $songManager = new SongManager();
+        $userManager = new UserManager();
         $date = new DateTime();
         $searchDate = $date->format('Y-m-d');
+        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $searchDate = $_POST['date'];
+            if (isset($_POST['login'])) {
+                $userData = $userManager->selectOneByEmail($_POST['mail']);
+                if (password_verify($_POST['password'], $userData['password'])) {
+                    $_SESSION['user'] = $userData;
+                    header('Location: /');
+                } else {
+                    $errors['wrongPass'] = 'Ce n\'est pas le bon mot de passe';
+                }
+            } elseif (isset($_POST['register'])) {
+                $pseudo   = trim($_POST['pseudo']);
+                $mail     = trim($_POST['mail']);
+                $password = trim($_POST['password']);
+                $github   = trim($_POST['github-name']);
+                if (empty($pseudo)) {
+                    $errors['errorPseudo'] =  'Choisis un pseudo';
+                }
+                if (strlen($pseudo) <= 2) {
+                    $errors['errorPseudo2'] = 'Plus de 1 charactère quand même !';
+                }
+                if (empty($password)) {
+                    $errors['errorPass'] = 'Choisis un mot de passe';
+                }
+                if (empty($mail)) {
+                    $errors['errorMail'] = 'Entre ton adresse mail';
+                }
+                if (empty($github)) {
+                    $errors['errorGithub'] = 'Merci d\'entrer ton nom github (Si tu veux voir afficher ta photo :))';
+                }
+                //TODO ligne de code à revoir !
+                /*if ($mail === $userManager->selectOneByEmail($mail)['mail']) {
+                    $errors['errorMail2'] = 'Cette adresse est déjà utilisée, merci d\'en choisir une autre';
+                }
+                if ($github === $userManager->selectOneByEmail($mail)['github_name']) {
+                    $errors['errorGithub2'] = 'Ce nom Github est déjà utilisé, merci d\'en choisir un autre';
+                }*/
+                if (count($errors) === 0) {
+                    $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                    $userId = $userManager->create($_POST);
+                    $_SESSION['user'] = $userManager->selectUserById($userId);
+
+                    header('Location: /?register=true');
+                }
+            } elseif ($_POST['date'] !== '') {
+                $searchDate = $_POST['date'];
+            }
         }
         $songs = $songManager->showSongsByDate($searchDate);
-        return $this->twig->render('Home/index.html.twig', ['songs' => $songs]);
+        $hasAlreadyPost = false;
+
+        if (isset($_SESSION['user']['id'])) {
+            $hasAlreadyPost = $userManager->hasAlreadyPost($_SESSION['user']['id']);
+        }
+        return $this->twig->render('Home/index.html.twig', [
+            'register_success' => $_GET['register'] ?? null,
+            'songs'            => $songs,
+            'has_already_post' => $hasAlreadyPost,
+            'count'            => $songManager->countSongsOfByDay($searchDate),
+            'errors'           => $errors,
+        ]);
     }
 }

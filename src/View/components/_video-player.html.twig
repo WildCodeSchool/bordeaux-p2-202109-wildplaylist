@@ -1,8 +1,10 @@
-<div class="container">
-    <div class="ratio ratio-16x9">
-        <iframe
+
+<div class="container p-0">
+    <div class="ratio ratio-16x9 gradient-border" id="player-container">
+          <iframe
+            id='video-player'
             class="shadow-1-strong rounded"
-            src="https://www.youtube.com/embed/A3PDXmYoF5U"
+            src="https://www.youtube.com/embed/{{ songs[0].url }}"
             title="YouTube video"
             allowfullscreen
         ></iframe>
