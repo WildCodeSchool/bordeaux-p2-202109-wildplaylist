@@ -11,7 +11,6 @@
     --color-primary-hover: #ff6f52;
 }
 body {
-    background: linear-gradient(var(--bs-primary), 95%, #ff6f52);
     font-family: "Noto Mono", sans-serif;
     font-weight:normal;
 }
@@ -29,7 +28,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     font-weight:bold;
     color: #ffffff;
 }
-.footer-text, .session-username {
+.footer-text, .session-username, .text-calendar {
     font-size: 10px;
 }
 #bootstrap-override .dropdown-menu {
@@ -106,6 +105,9 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 .player-height{
     height:fit-content;
 }
+.logo {
+    display:none;
+}
 /* Flickering animation */
 /*@keyframes flicker {
     0%, 18%, 22%, 25%, 53%, 57%, 100% {
@@ -139,7 +141,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     height: calc(100% + var(--border-width) * 2);
     background: linear-gradient(60deg, #5f86f2, #a65ff2, #f25fd0, #f25f61, #f2cb5f, #abf25f, #5ff281, #5ff2f0);
     background-size: 300% 300%;
-    background-position: 0 50h?v=5wBTdfAkqGU&ab_ch%;
+    background-position: 0 50h;
     border-radius: calc(2 * var(--border-width));
     animation: moveGradient 4s alternate infinite;
 }

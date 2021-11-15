@@ -25,6 +25,7 @@ class HomeController extends AbstractController
      */
     public function form(): string
     {
+        $isFromDate = false;
         $songManager = new SongManager();
         $userManager = new UserManager();
         $date = new DateTime();
@@ -56,16 +57,15 @@ class HomeController extends AbstractController
                 if (empty($mail)) {
                     $errors['errorMail'] = 'Entre ton adresse mail';
                 }
+                if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+                    $errors['formatEmail'] = "Le format de l'email est invalide";
+                }
                 if (empty($github)) {
                     $errors['errorGithub'] = 'Merci d\'entrer ton nom github (Si tu veux voir afficher ta photo :))';
                 }
-                //TODO ligne de code à revoir !
-                /*if ($mail === $userManager->selectOneByEmail($mail)['mail']) {
-                    $errors['errorMail2'] = 'Cette adresse est déjà utilisée, merci d\'en choisir une autre';
+                if ($userManager->selectOneByEmail($mail)) {
+                    echo $errors['errorMail2'] = 'Cette adresse est déjà utilisée, merci d\'en choisir une autre';
                 }
-                if ($github === $userManager->selectOneByEmail($mail)['github_name']) {
-                    $errors['errorGithub2'] = 'Ce nom Github est déjà utilisé, merci d\'en choisir un autre';
-                }*/
                 if (count($errors) === 0) {
                     $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
                     $userId = $userManager->create($_POST);
@@ -74,6 +74,7 @@ class HomeController extends AbstractController
                     header('Location: /?register=true');
                 }
             } elseif ($_POST['date'] !== '') {
+                $isFromDate = true;
                 $searchDate = $_POST['date'];
             }
         }
@@ -89,6 +90,7 @@ class HomeController extends AbstractController
             'has_already_post' => $hasAlreadyPost,
             'count'            => $songManager->countSongsOfByDay($searchDate),
             'errors'           => $errors,
+            'is_from_date'     => $isFromDate,
         ]);
     }
 }

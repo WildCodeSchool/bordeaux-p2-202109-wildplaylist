@@ -5,10 +5,10 @@
         <div class="calendar-block d-flex flex-column bg-secondary shadow rounded ms-2">
             <form class="d-flex flex-column" action='/' method='POST'>
                 <input class='inputDate' type='date' name='date'>
-                <button class='calendar btn-sm btn-primary btn-rounded'><i class="fas fa-calendar-day"></i></button>
+                <button class='calendar btn-sm btn-primary btn-rounded mt-2'><i class="fas fa-calendar-day"></i></button>
             </form>
             <div>
-                <p class="text-white">Quel jour ?</p>
+                <p class="mt-3 ms-4 text-calendar text-white">Choisis ton jour !</p>
             </div>
         </div>
         <div class="col-12 col-lg-5 bg-secondary shadow rounded">
@@ -37,22 +37,25 @@
                                     </div>
                                 {% endif %}
                             </div>
-                        </li> {# Pseudo de l'utilisateur #}
-
+                        </li>
                     {% endfor %}
-                    {% if count >= 10  %}
-                        <p class="text-white">La playlist est pleine, reviens demain :)</p>
-                    {% elseif  has_already_post %}
-                        <p class="text-white">On a dit une musique par jour !</p>
+                    {% if is_from_date %}
+                        <p class="text-white">Bonne écoute !</p>
                     {% else %}
-                        {% include 'components/_addsongbox.html.twig' %}
-                        <div class="ms-2 mt-2">
-                            {% if session %}
-                                <a class="link-add-song " href="" data-bs-toggle="modal" data-bs-target="#addingModal"><i class="fas fa-plus-circle"></i></a>
-                            {% else %}
-                                <h6 class="connect-add mt-3 mb-0 me-4">Fais nous écouter tes goûts en te connectant</h6>
-                            {% endif %}
-                        </div>
+                        {% if count >= 10  %}
+                            <p class="text-white">La playlist est pleine, reviens demain :)</p>
+                        {% elseif  has_already_post %}
+                            <p class="text-white">On a dit une musique par jour !</p>
+                        {% else %}
+                            {% include 'components/_addsongbox.html.twig' %}
+                            <div class="ms-2 mt-2">
+                                {% if session %}
+                                    <a class="link-add-song " href="" data-bs-toggle="modal" data-bs-target="#addingModal"><i class="fas fa-plus-circle"></i></a>
+                                {% else %}
+                                    <h6 class="connect-add mt-3 mb-0 me-4">Fais nous écouter tes goûts en te connectant</h6>
+                                {% endif %}
+                            </div>
+                        {% endif %}
                     {% endif %}
                 </ul>
             </div>
