@@ -91,6 +91,7 @@ class HomeController extends AbstractController
             'count'            => $songManager->countSongsOfByDay($searchDate),
             'errors'           => $errors,
             'is_from_date'     => $isFromDate,
+            'search_date'      => $searchDate,
         ]);
     }
 }
