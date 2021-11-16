@@ -19,11 +19,20 @@
                     {% if count >= 10  %}
                         <p class="text-white">La playlist est pleine, reviens demain :)</p>
                     {% elseif  has_already_post %}
-                        <p class="text-white">On a dit une musique par jour !</p>
+                        {% include'components/_fakeaddsong.html.twig' %}
+                        <div class="ms-2 mt-2 mb-2 text-center">
+                            <a class="link-add-song " href="" data-bs-toggle="modal" data-bs-target="#addingModal">
+                                <button type="button" class="btn btn-primary btn-lg btn-block p-2 rounded-pill bouton">Ajouter une musique
+                                </button>
+                            </a>
+                        </div>
                     {% else %}
                         {% include 'components/_addsongbox.html.twig' %}
-                        <div class="ms-2 mt-2 text-center">
-                            <a class="link-add-song " href="" data-bs-toggle="modal" data-bs-target="#addingModal"><button type="button" class="btn btn-primary btn-lg btn-block p-2 rounded-pill bouton">Ajouter une musique</button></a>
+                        <div class="ms-2 mt-2 mb-2 text-center">
+                            <a class="link-add-song " href="" data-bs-toggle="modal" data-bs-target="#addingModal">
+                                <button type="button" class="btn btn-primary btn-lg btn-block p-2 rounded-pill bouton">Ajouter une musique
+                                </button>
+                            </a>
                         </div>
                     {% endif %}
                 {% endif %}

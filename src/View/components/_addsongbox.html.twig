@@ -14,8 +14,12 @@
                     </div>
                     <button id="btn-adding" name="adding" class="w-100 mb-2 btn btn-lg rounded-pill " type="submit">Ecoutons ça !</button>
                 </form>
+                {% elseif has_already_post %}
+                    <p class="d-flex justify-content-center">On a dit une musique par jour !</p>
+                    <button id="btn-login" class="w-100 mb-2 btn btn-lg rounded-pill" data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</button>
                 {% else %}
                     <p class="d-flex justify-content-center">Inscris ou Connecte toi pour ajouter ta musique</p>
+                    <button id="btn-login" class="w-100 mb-2 btn btn-lg rounded-pill" data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</button>
                 {% endif %}
             </div>
         </div>
