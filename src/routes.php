@@ -17,5 +17,5 @@ return [
     'user/edit' => ['UserController', 'edit', ['id']],
     'logout' => ['UserController', 'logout',],
     'addSong' => ['SongController', 'add'],
-    'deleteSong' => ['SongController', 'delete',],
+    'deleteSong' => ['SongController', 'delete'],
 ];

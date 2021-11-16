@@ -54,4 +54,11 @@ class SongManager extends AbstractManager
         $statement->execute();
         return $statement->fetchColumn();
     }
+
+    public function deleteSong(int $id): void
+    {
+        $statement = $this->pdo->prepare("DELETE * FROM " . static::TABLE . " WHERE id=:id");
+        $statement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $statement->execute();
+    }
 }
