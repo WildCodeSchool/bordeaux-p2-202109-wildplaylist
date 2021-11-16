@@ -11,7 +11,8 @@ class RatingManager extends AbstractManager
         $statement = $this->pdo->prepare(
             "INSERT INTO " . static::TABLE . " 
         (user_id, song_id) 
-        VALUES (:user_id, :song_id)");
+        VALUES (:user_id, :song_id)"
+        );
         $statement->bindValue(':user_id', $userId, \PDO::PARAM_INT);
         $statement->bindValue(':song_id', $songId, \PDO::PARAM_INT);
 
