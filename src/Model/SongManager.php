@@ -11,7 +11,7 @@ class SongManager extends AbstractManager
      */
     public function showSongsByDate(string $date): array
     {
-        $query = ("SELECT *, user.pseudo
+        $query = ("SELECT song.*, user.pseudo, user.github_name
                     FROM " . self::TABLE . "
                     JOIN user ON user.id = song.user_id
                     WHERE posted_at =:date

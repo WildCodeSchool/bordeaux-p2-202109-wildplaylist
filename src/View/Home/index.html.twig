@@ -45,7 +45,16 @@
                             <button type="button" data-url='{{ song.url }}' class='play-button me-0 ms-3'>
                                 <i class="fas fa-play-circle"></i>
                             </button> {# Système de votes #}
-                            <h6 class="mb-0 ms-4">{{ song.title }}</h6> {# Titre de la musique #}
+                            <h6 class="mb-0 ms-4">{{ song.title }} {# Titre de la musique #}
+                                {% if session.user.is_admin %} {# trash-can #}
+                                    <form action="/" method="POST">
+                                        <input type="hidden" name="id" value={{ song.id }} />
+                                        <button name="deleteSong" type="button" value="delete" class='play-button me-0 ms-3 ms-3 mb-0 d-flex justify-content-end align-content-center'>
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </h6>
                             <div class ="mb-0 ms-auto d-flex justify-content-end align-content-center">
                                 <p class="share-pseudo-by">par</p>
                                 {% if session %}
