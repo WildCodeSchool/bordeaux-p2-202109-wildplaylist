@@ -5,14 +5,18 @@
                 <button class="btn" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                {% if session %}
                 <h3 class='text-muted text-center'>Ajoute ta musique</h3>
                 <form class="" action="/addSong" method="post">
                     <div class="form-floating mb-3">
                         <input name="url" type="text" class="form-control rounded-4" id="adding-url" placeholder="url">
                         <label for="adding-url">Copie/Colle ton url ici</label>
                     </div>
-                    <button name="adding" class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Ecoutons ça !</button>
+                    <button id="btn-adding" name="adding" class="w-100 mb-2 btn btn-lg rounded-pill " type="submit">Ecoutons ça !</button>
                 </form>
+                {% else %}
+                    <p class="d-flex justify-content-center">Inscris ou Connecte toi pour ajouter ta musique</p>
+                {% endif %}
             </div>
         </div>
     </div>

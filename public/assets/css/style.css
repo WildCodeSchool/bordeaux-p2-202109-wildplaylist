@@ -10,6 +10,14 @@
     --color-primary: #fe5000;
     --color-primary-hover: #ff6f52;
 }
+.btn-primary {
+    background-color:var(--bs-primary);
+    border-color:var(--bs-secondary);
+}
+.btn-primary:hover {
+    background-color: var(--bs-secondary);
+    border-color: var(--bs-primary);
+}
 body {
     font-family: "Noto Mono", sans-serif;
     font-weight:normal;
@@ -136,7 +144,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     border-radius: var(--border-width);
 }
 
-.gradient-border::after{
+.gradient-border::after {
     position: absolute;
     content: "";
     top: calc(-1 * var(--border-width));
@@ -151,7 +159,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     animation: moveGradient 4s alternate infinite;
 }
 
-.bouton {
+.bouton, #btn-adding, #btn-login, #btn-register {
     top: calc(-1 * var(--border-width));
     left: calc(-1 * var(--border-width));
     z-index: -1;

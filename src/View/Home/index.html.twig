@@ -23,11 +23,7 @@
                     {% else %}
                         {% include 'components/_addsongbox.html.twig' %}
                         <div class="ms-2 mt-2 text-center">
-                            {% if session %}
-                                <a class="link-add-song " href="" data-bs-toggle="modal" data-bs-target="#addingModal"><button type="button" class="btn btn-primary btn-lg btn-block p-2 rounded-pill bouton">Ajouter une musique</button></a>
-                            {% else %}
-                                <h6 class="connect-add mt-3 mb-0 me-4">Fais nous écouter tes goûts en te connectant</h6>
-                            {% endif %}
+                            <a class="link-add-song " href="" data-bs-toggle="modal" data-bs-target="#addingModal"><button type="button" class="btn btn-primary btn-lg btn-block p-2 rounded-pill bouton">Ajouter une musique</button></a>
                         </div>
                     {% endif %}
                 {% endif %}
