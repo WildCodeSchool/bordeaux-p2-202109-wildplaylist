@@ -37,6 +37,7 @@ class SongController extends AbstractController
         return $this->twig->render('Home/index.html.twig');
     }
 
+
     public function vote($songId)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -48,5 +49,16 @@ class SongController extends AbstractController
             }
         }
         header('Location:/');
+
+    public function delete()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['delete'])) {
+                $id = trim($_POST['id']);
+                $songManager = new SongManager();
+                $songManager->delete((int)$id);
+                header('Location:/');
+            }
+        }
     }
 }

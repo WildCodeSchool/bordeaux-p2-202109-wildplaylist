@@ -96,6 +96,7 @@ class HomeController extends AbstractController
             'errors'           => $errors,
             'is_from_date'     => $isFromDate,
             'ratings'          => $ratings,
+            'search_date'      => $searchDate,
         ]);
     }
 }

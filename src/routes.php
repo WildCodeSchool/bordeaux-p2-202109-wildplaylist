@@ -18,4 +18,5 @@ return [
     'logout' => ['UserController', 'logout',],
     'addSong' => ['SongController', 'add'],
     'rating' => ['SongController', 'vote', ['songId']],
+    'deleteSong' => ['SongController', 'delete'],
 ];
