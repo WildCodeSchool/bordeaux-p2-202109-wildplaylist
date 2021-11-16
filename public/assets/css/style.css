@@ -9,10 +9,8 @@
     --bs-secondary-rgb: 34, 35, 40;
     --color-primary: #fe5000;
     --color-primary-hover: #ff6f52;
-
 }
 body {
-    background: linear-gradient(var(--bs-primary), 95%, #ff6f52);
     font-family: "Noto Mono", sans-serif;
     font-weight:normal;
 }
@@ -21,7 +19,6 @@ body {
 }
 .border-secondary {
     border-color: var(--bs-secondary) !important;
-
 }
 .marginPlaylist{
 
@@ -35,7 +32,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     font-weight:bold;
     color: #ffffff;
 }
-.footer-text, .session-username {
+.footer-text, .session-username, .text-calendar {
     font-size: 10px;
 }
 #bootstrap-override .dropdown-menu {
@@ -51,7 +48,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     border-color: var(--color-primary);
     margin: 0 35%;
 }
-input[type="date"] {
+.inputDate {
     margin: 10px;
 }
 .calendar:hover {
@@ -111,6 +108,9 @@ input[type="date"] {
 
 .player-height{
     height:fit-content;
+}
+.logo {
+    display:none;
 }
 /* Flickering animation */
 /*@keyframes flicker {
