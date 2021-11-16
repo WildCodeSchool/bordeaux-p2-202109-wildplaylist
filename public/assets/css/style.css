@@ -20,6 +20,10 @@ body {
 .border-secondary {
     border-color: var(--bs-secondary) !important;
 }
+.marginPlaylist{
+
+    margin-top:100px;
+}
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     margin-top: 0;
     margin-bottom: 0.5rem;
@@ -131,7 +135,8 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     --border-width: 3px;
     border-radius: var(--border-width);
 }
-.gradient-border::after {
+
+.gradient-border::after{
     position: absolute;
     content: "";
     top: calc(-1 * var(--border-width));
@@ -145,6 +150,22 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     border-radius: calc(2 * var(--border-width));
     animation: moveGradient 4s alternate infinite;
 }
+
+.bouton {
+    top: calc(-1 * var(--border-width));
+    left: calc(-1 * var(--border-width));
+    z-index: -1;
+    height: calc(100% + var(--border-width) * 2);
+    background: linear-gradient(60deg, #5f86f2, #a65ff2, #f25fd0, #f25f61, #f2cb5f, #abf25f, #5ff281, #5ff2f0);
+    background-size: 300% 300%;
+    background-position: 0 50h;
+    border-radius: calc(2 * var(--border-width));
+    animation: moveGradient 4s alternate infinite;
+    width: 250px;
+    font-size: medium;
+    font-weight: 900;
+}
+
 @keyframes moveGradient {
     50% {
         background-position: 100% 50%;
