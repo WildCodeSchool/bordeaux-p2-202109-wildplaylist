@@ -28,8 +28,8 @@ class SongManager extends AbstractManager
     public function insert(array $song, $userId): int
     {
         $statement = $this->pdo->prepare('
-        INSERT INTO ' . self::TABLE . '(title, url, posted_at, user_id)
-        VALUES (:title, :url, NOW(), :user_id)
+        INSERT INTO ' . self::TABLE . '(title, url, posted_at, user_id, rating)
+        VALUES (:title, :url, NOW(), :user_id, 0)
         ');
         $statement->bindValue(':title', $song['title'], \PDO::PARAM_STR);
         $statement->bindValue(':url', $song['url'], \PDO::PARAM_STR);
@@ -53,5 +53,12 @@ class SongManager extends AbstractManager
         $statement->bindValue(':date', $date, \PDO::PARAM_STR);
         $statement->execute();
         return $statement->fetchColumn();
+    }
+    public function voteFor(int $songId): bool
+    {
+        $statement = $this->pdo->prepare("UPDATE song SET rating = rating+1 WHERE id =:id");
+        $statement->bindValue('id', $songId, \PDO::PARAM_INT);
+
+        return $statement->execute();
     }
 }

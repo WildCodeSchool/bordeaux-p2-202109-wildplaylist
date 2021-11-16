@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\RatingManager;
 use App\Model\SongManager;
 use App\Service\SongUrlRefactor;
 use App\Service\SongTitleCollector;
@@ -35,6 +36,19 @@ class SongController extends AbstractController
         }
         return $this->twig->render('Home/index.html.twig');
     }
+
+
+    public function vote($songId)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($_SESSION) {
+                $songManager = new SongManager();
+                $songManager->voteFor($songId);
+                $ratingManager = new RatingManager();
+                $ratingManager->insertVote($songId, $_SESSION['user']['id']);
+            }
+        }
+        header('Location:/');
 
     public function delete()
     {

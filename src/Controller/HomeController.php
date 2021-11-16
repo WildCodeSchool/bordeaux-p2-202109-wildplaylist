@@ -9,6 +9,7 @@
 
 namespace App\Controller;
 
+use App\Model\RatingManager;
 use App\Model\UserManager;
 use DateTime;
 use App\Model\SongManager;
@@ -28,6 +29,7 @@ class HomeController extends AbstractController
         $isFromDate = false;
         $songManager = new SongManager();
         $userManager = new UserManager();
+        $ratingManager = new RatingManager();
         $date = new DateTime();
         $searchDate = $date->format('Y-m-d');
         $errors = [];
@@ -80,9 +82,11 @@ class HomeController extends AbstractController
         }
         $songs = $songManager->showSongsByDate($searchDate);
         $hasAlreadyPost = false;
+        $ratings = null;
 
         if (isset($_SESSION['user']['id'])) {
             $hasAlreadyPost = $userManager->hasAlreadyPost($_SESSION['user']['id']);
+            $ratings = $ratingManager->selectVote($_SESSION['user']['id']);
         }
         return $this->twig->render('Home/index.html.twig', [
             'register_success' => $_GET['register'] ?? null,
@@ -91,6 +95,7 @@ class HomeController extends AbstractController
             'count'            => $songManager->countSongsOfByDay($searchDate),
             'errors'           => $errors,
             'is_from_date'     => $isFromDate,
+            'ratings'          => $ratings,
             'search_date'      => $searchDate,
         ]);
     }
