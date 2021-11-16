@@ -49,7 +49,7 @@ class SongController extends AbstractController
             }
         }
         header('Location:/');
-
+    }
     public function delete()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
