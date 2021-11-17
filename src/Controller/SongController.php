@@ -18,6 +18,7 @@ class SongController extends AbstractController
         $now = new DateTime();
         $date = $now->format('Y-m-d');
         $count = $songManager->countSongsOfByDay($date);
+        $urlError = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ((int)$count < 10) {
@@ -26,10 +27,14 @@ class SongController extends AbstractController
                     $songUrl = $song['url'];
                     $songUrlRefactor->songUrlRefactor($songUrl);
                     $song['url'] = $songUrlRefactor->songUrlRefactor($songUrl);
-                    $videoId = $song['url'];
-                    $songTitleCollector->songTitleCollector($videoId);
-                    $song['title'] = $songTitleCollector->songTitleCollector($videoId);
-                    $songManager->insert($song, $_SESSION['user']['id']);
+                    if ($song['url'] === 'false') {
+                        $urlError = 'Ce lien Youtube n\'est pas valide';
+                    } else {
+                        $videoId = $song['url'];
+                        $songTitleCollector->songTitleCollector($videoId);
+                        $song['title'] = $songTitleCollector->songTitleCollector($videoId);
+                        $songManager->insert($song, $_SESSION['user']['id']);
+                    }
                 }
             }
             header('Location: /');

@@ -19,6 +19,8 @@ class SongUrlRefactor
             $queryString = parse_url($songUrl)['query'];
             parse_str($queryString, $parameters);
             $songUrl = $parameters['v'];
+        } else {
+            $songUrl = 'false';
         }
         return $songUrl;
     }
