@@ -9,7 +9,7 @@
             {% include 'components/_loginbox.html.twig' %}
             {% include 'components/_registerbox.html.twig' %}
             <ul class="navbar-nav">
-                <h6 class="nav-item session-username align-self-center mt-2">{{ session.user.pseudo }}</h6>
+                <h6 class="nav-item session-username align-self-center mt-2">{{ session.user.pseudo|capitalize }}</h6>
                 <li class="nav-item dropdown">
                     <a class="btn d-flex" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://avatars.githubusercontent.com/{% if (session.user) %}{{ session.user.github_name }}{% else %}github{% endif %}"
