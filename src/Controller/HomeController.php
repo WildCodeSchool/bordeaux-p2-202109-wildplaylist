@@ -36,11 +36,15 @@ class HomeController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['login'])) {
                 $userData = $userManager->selectOneByEmail($_POST['mail']);
-                if (password_verify($_POST['password'], $userData['password'])) {
-                    $_SESSION['user'] = $userData;
-                    header('Location: /');
+                if ($userData) {
+                    if (password_verify($_POST['password'], $userData['password'])) {
+                        $_SESSION['user'] = $userData;
+                        header('Location: /');
+                    } else {
+                        $errors['wrongPass'] = 'Ce n\'est pas le bon mot de passe';
+                    }
                 } else {
-                    $errors['wrongPass'] = 'Ce n\'est pas le bon mot de passe';
+                    $errors['wrongMail'] = 'Ce mail n\'existe pas';
                 }
             } elseif (isset($_POST['register'])) {
                 $pseudo   = trim($_POST['pseudo']);
