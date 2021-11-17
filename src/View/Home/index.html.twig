@@ -1,6 +1,12 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
 
+
+    <div class="container">
+        <div class="text-center mt-5">
+            <h1> MUSIQUE SAUVAGE </h1>
+        </div>
+    </div>
     <div class="boxes d-flex flex-column-reverse align-items-stretch flex-lg-row justify-content-around mt-5">
         <div class="calendar-block d-flex flex-column bg-secondary shadow rounded ms-2">
             <form class="d-flex flex-column" action='/' method='POST'>
@@ -12,18 +18,19 @@
                 <p id="demo"></p>
             </div>
         </div>
-        <div class="col-12 col-lg-5 bg-secondary shadow rounded">
+        <div class="col-12 col-lg-5 bg-secondary shadow rounded" id="the-playlist-lecteur">
             <div class="p-2 flex-shrink-1">
                 {% if is_from_date %}
                     <p class="text-white">Bonne écoute !</p>
                 {% else %}
-                    {% if count >= 10  %}
+                    {% if count >= 10 %}
                         <p class="text-white">La playlist est pleine, reviens demain :)</p>
                     {% elseif  has_already_post %}
                         {% include'components/_fakeaddsong.html.twig' %}
                         <div class="ms-2 mt-2 mb-2 text-center">
                             <a class="link-add-song " href="" data-bs-toggle="modal" data-bs-target="#addingModal">
-                                <button type="button" class="btn btn-primary btn-lg btn-block p-2 rounded-pill bouton">Ajouter une musique
+                                <button type="button" class="btn btn-primary btn-lg btn-block p-2 rounded-pill bouton">
+                                    Ajouter une musique
                                 </button>
                             </a>
                         </div>
@@ -31,7 +38,8 @@
                         {% include 'components/_addsongbox.html.twig' %}
                         <div class="ms-2 mt-2 mb-2 text-center">
                             <a class="link-add-song " href="" data-bs-toggle="modal" data-bs-target="#addingModal">
-                                <button type="button" class="btn btn-primary btn-lg btn-block p-2 rounded-pill bouton">Ajouter une musique
+                                <button type="button" class="btn btn-primary btn-lg btn-block p-2 rounded-pill bouton">
+                                    Ajouter une musique
                                 </button>
                             </a>
                         </div>
@@ -69,16 +77,20 @@
                                 {% endif %}
                             </h6>
                             <div class ="mb-0 ms-auto d-flex justify-content-end align-content-center">
+
                                 <p class="share-pseudo-by">par</p>
                                 {% if session %}
-                                    <a href="/user?id={{ song.user_id }}" title="{{ song.pseudo }}" class="share-pseudo text-decoration-none link-primary ms-1">
+                                    <a href="/user?id={{ song.user_id }}" title="{{ song.pseudo }}"
+                                       class="share-pseudo text-decoration-none link-primary ms-1">
                                         <img src="https://avatars.githubusercontent.com/{{ song.github_name }}"
-                                             alt="Photo de {{ song.pseudo }}"  width="20" height="auto" class="ms-1 align-self-center rounded-circle">
+                                             alt="Photo de {{ song.pseudo }}" width="20" height="auto"
+                                             class="ms-1 align-self-center rounded-circle">
                                     </a>
                                 {% else %}
                                     <div class="share-pseudo text-decoration-none link-primary ms-1">
                                         <img src="https://avatars.githubusercontent.com/{{ song.github_name }}"
-                                             alt="Photo de {{ song.pseudo }}"  width="20" height="auto" class="ms-1 align-self-center rounded-circle">
+                                             alt="Photo de {{ song.pseudo }}" width="20" height="auto"
+                                             class="ms-1 align-self-center rounded-circle">
                                     </div>
                                 {% endif %}
                             </div>
@@ -87,7 +99,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-lg-5 bg-secondary shadow rounded me-2 player-height">
+        <div class="col-12 col-lg-5 shadow rounded me-2 player-height">
             <div>
                 {% include 'components/_video-player.html.twig' %}
             </div>
