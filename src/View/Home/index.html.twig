@@ -70,14 +70,13 @@
                                 {% if session.user.is_admin %} {# trash-can #}
                                     <form action="/deleteSong" method="POST">
                                         <input type="hidden" name="id" value={{ song.id }} />
-                                        <button name="delete" class='play-button me-0 ms-3 ms-3 mb-0 d-flex justify-content-end align-content-center'>
+                                        <button name="delete" class='play-button me-0 pe-3 mb-0 d-flex justify-content-end align-content-center'>
                                             <i class="fa-solid fa-trash-can"></i>
                                         </button>
                                     </form>
                                 {% endif %}
                             </p>
                             <div class ="mb-0 ms-auto d-flex justify-content-end align-content-center">
-
                                 <p class="share-pseudo-by">par</p>
                                 {% if session %}
                                     <a href="/user?id={{ song.user_id }}" title="{{ song.pseudo }}"
