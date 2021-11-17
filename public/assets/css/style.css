@@ -22,8 +22,8 @@
 }
 
 body {
-    font-family: "Noto Mono", sans-serif;
-    font-weight: normal;
+    font-family: "Tomorrow", sans-serif;
+    font-weight: 500;
 }
 
 .border-primary {
@@ -43,13 +43,13 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     margin-top: 0;
     margin-bottom: 0.5rem;
     line-height: 1.2;
-    font-family: "Noto Mono", sans-serif;
+    font-family: 'Orbitron', sans-serif;
     font-weight: bold;
     color: #ffffff;
 }
 
 .footer-text, .session-username, .text-calendar {
-    font-size: 10px;
+    font-size: 14px;
 }
 
 #bootstrap-override .dropdown-menu {
@@ -196,7 +196,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     animation: moveGradient 4s alternate infinite;
     width: 250px;
     font-size: medium;
-    font-weight: 900;
+    font-weight: 500;
 }
 @keyframes moveGradient {
     50% {
