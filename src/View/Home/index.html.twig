@@ -14,7 +14,7 @@
                 <button class='calendar btn-sm btn-primary btn-rounded mt-2'><i class="fas fa-calendar-day"></i></button>
             </form>
             <div>
-                <p class="mt-3 ms-4 text-calendar text-white">Choisis ton jour !</p>
+                <p class="mt-3 text-calendar text-white text-center">Choisis ton jour !</p>
                 <p id="demo"></p>
             </div>
         </div>
@@ -66,7 +66,7 @@
                             <button type="button" data-url='{{ song.url }}' class='play-button me-0 position-absolute'>
                                 <i class="fas fa-play-circle"></i>
                             </button> {# Système de votes #}
-                            <h6 class="song-title mb-0">{{ song.title }} {# Titre de la musique #}
+                            <p class="song-title mb-0">{{ song.title }} {# Titre de la musique #}
                                 {% if session.user.is_admin %} {# trash-can #}
                                     <form action="/deleteSong" method="POST">
                                         <input type="hidden" name="id" value={{ song.id }} />
@@ -75,7 +75,7 @@
                                         </button>
                                     </form>
                                 {% endif %}
-                            </h6>
+                            </p>
                             <div class ="mb-0 ms-auto d-flex justify-content-end align-content-center">
 
                                 <p class="share-pseudo-by">par</p>
