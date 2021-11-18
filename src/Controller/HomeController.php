@@ -70,7 +70,7 @@ class HomeController extends AbstractController
                     $errors['errorGithub'] = 'Merci d\'entrer ton nom github (Si tu veux voir afficher ta photo :))';
                 }
                 if ($userManager->selectOneByEmail($mail)) {
-                    echo $errors['errorMail2'] = 'Cette adresse est déjà utilisée, merci d\'en choisir une autre';
+                    $errors['errorMail2'] = 'Cette adresse est déjà utilisée, merci d\'en choisir une autre';
                 }
                 if (count($errors) === 0) {
                     $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
