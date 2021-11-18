@@ -8,10 +8,10 @@
         </div>
     </div>
     <div class="boxes d-flex flex-column-reverse align-items-stretch flex-lg-row justify-content-around mt-5">
-        <div class="calendar-block d-flex flex-column bg-secondary shadow rounded ms-2">
+        <div class="calendar-block d-flex flex-column bg-secondary shadow rounded">
             <form class="d-flex flex-column" action='/' method='POST'>
                 <input value='{{ search_date }}' class='inputDate' type='date' name='date'>
-                <button class='calendar btn-sm btn-primary btn-rounded mt-2'><i class="fas fa-calendar-day"></i></button>
+                <button class='calendar btn-sm btn-primary rounded mt-2'><i class="fas fa-calendar-day"></i></button>
             </form>
             <div>
                 <p class="mt-3 text-calendar text-white text-center">Choisis ton jour !</p>
@@ -21,12 +21,12 @@
         <div class="col-12 col-lg-5 bg-secondary shadow rounded" id="the-playlist-lecteur">
             <div class="p-2 flex-shrink-1">
                 {% if "now"|date("Y-m-d") < search_date  %}
-                    <p class="text-white text-center mt-1">On est pas encore dans le futur</p>
+                    <p class="text-white text-center mt-3">On est pas encore dans le futur</p>
                 {% elseif search_date != "now"|date("Y-m-d") %}
-                    <p class="text-white text-center mt-1">Bonne écoute !</p>
+                    <p class="text-white text-center mt-3">Bonne écoute !</p>
                 {% else %}
                     {% if count >= 10 %}
-                        <p class="text-white">La playlist est pleine, reviens demain :)</p>
+                        <p class="text-white text-center mt-3">La playlist est pleine, reviens demain :)</p>
                     {% elseif  has_already_post %}
                         {% include'components/_fakeaddsong.html.twig' %}
                         <div class="ms-2 mt-2 mb-2 text-center">
@@ -38,7 +38,7 @@
                         </div>
                     {% else %}
                         {% include 'components/_addsongbox.html.twig' %}
-                        <div class="ms-2 mt-2 mb-2 text-center">
+                        <div class="ms-2 mt-2 mb-3 text-center">
                             <a class="link-add-song " href="" data-bs-toggle="modal" data-bs-target="#addingModal">
                                 <button type="button" class="btn btn-primary btn-lg btn-block p-2 rounded-pill bouton">
                                     Ajouter une musique
@@ -50,7 +50,7 @@
                 <ul class="list-group list-group-flush">
                     {% set songUrl = '' %}
                     {% for song in songs %}
-                        <li class="songs d-flex align-items-center list-group-item bg-secondary text-white position-relative">
+                        <li class="songs mt-2 d-flex align-items-center list-group-item bg-secondary text-white position-relative">
                             <p class="rating-number position-absolute text-end">{% if song.rating == 0 %}{% else %}{{ song.rating }}{% endif %}</p>
                             {% if session %}
                                 {% if song.id in ratings%}
@@ -102,7 +102,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-lg-5 shadow rounded me-2 player-height">
+        <div class="offset-1 col-10 col-lg-5 offset-lg-0 shadow rounded me-2 player-height">
             <div>
                 {% include 'components/_video-player.html.twig' %}
             </div>
