@@ -82,14 +82,16 @@
                                     <a href="/user?id={{ song.user_id }}" title="{{ song.pseudo }}"
                                        class="share-pseudo text-decoration-none link-primary ms-1">
                                         <img src="https://avatars.githubusercontent.com/{{ song.github_name }}"
-                                             alt="Photo de {{ song.pseudo }}" width="20" height="auto"
+                                             alt="Photo de {{ song.pseudo }}" width="35" height="auto"
                                              class="ms-1 align-self-center rounded-circle">
                                     </a>
                                 {% else %}
                                     <div class="share-pseudo text-decoration-none link-primary ms-1">
+                                        <a title="{{ song.pseudo }}">
                                         <img src="https://avatars.githubusercontent.com/{{ song.github_name }}"
-                                             alt="Photo de {{ song.pseudo }}" width="20" height="auto"
+                                             alt="Photo de {{ song.pseudo }}" width="35" height="auto"
                                              class="ms-1 align-self-center rounded-circle">
+                                        </a>
                                     </div>
                                 {% endif %}
                             </div>
