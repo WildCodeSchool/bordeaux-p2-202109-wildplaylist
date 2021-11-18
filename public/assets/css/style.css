@@ -9,6 +9,7 @@
     --bs-secondary-rgb: 34, 35, 40;
     --color-primary: #fe5000;
     --color-primary-hover: #ff6f52;
+    --color-btn: #bababc;
 }
 
 .btn-primary {
@@ -62,20 +63,17 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 }
 
 .calendar {
-    color: #fff;
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
+    background: linear-gradient(60deg, #5f86f2, #a65ff2, #f25fd0, #f25f61, #f2cb5f, #abf25f, #5ff281, #5ff2f0);
+    background-size: 300% 300%;
+    animation: moveGradient 4s alternate infinite;
     margin: 0 35%;
+}
+.crown {
+    color: white;
 }
 
 .inputDate {
     margin: 10px;
-}
-
-.calendar:hover {
-    color: #fff;
-    background-color: var(--color-primary-hover);
-    border-color: var(--color-primary-hover);
 }
 
 .link-add-song {
@@ -88,7 +86,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 
 .play-button {
     background: none;
-    color: var(--color-primary);
+    color: var(--color-btn);
     border: none;
     padding: 0;
     font: inherit;
@@ -98,7 +96,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 }
 
 .play-button:hover {
-    color: var(--color-primary-hover);
+    color: var(--bs-primary);
     background: none;
     border: none;
     padding: 0;
@@ -116,6 +114,9 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 .share-pseudo, .rating-number {
     font-size: 14px;
 }
+.rating-number {
+    color: var(--color-btn)
+}
 
 .link-primary {
     color: var(--bs-primary);
@@ -127,7 +128,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 }
 
 #bootstrap-override .songs {
-    border-width: 0 0 4px;
+    border-width: 4px 0 0;
     border-color: var(--bs-primary);
 }
 
@@ -136,8 +137,12 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     margin-left: 11%;
 }
 
-.heart-ranking, .heart-ranking-full {
-    color: var(--color-primary);
+.heart-ranking-full {
+    color: var(--color-btn);
+    margin-left: 20px;
+}
+.heart-ranking {
+    color: var(--color-btn);
     margin-left: 20px;
 }
 .song-title {
@@ -164,6 +169,9 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     line-height: 0;
     width: 0;
     margin-right:30px;
+}
+.calendar-block {
+    margin-left: 0.5rem;
 }
 
 .gradient-border {
@@ -207,5 +215,10 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 @media screen and (max-width: 1000px) {
     #the-playlist-lecteur {
         margin-top: 50px;
+    }
+    .calendar-block {
+        margin-top : 10px;
+        margin-left: 25%;
+        margin-right: 25%;
     }
 }
