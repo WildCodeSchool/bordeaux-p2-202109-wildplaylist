@@ -20,8 +20,10 @@
         </div>
         <div class="col-12 col-lg-5 bg-secondary shadow rounded" id="the-playlist-lecteur">
             <div class="p-2 flex-shrink-1">
-                {% if is_from_date %}
-                    <p class="text-white">Bonne écoute !</p>
+                {% if "now"|date("Y-m-d") < search_date  %}
+                    <p class="text-white text-center mt-1">On est pas encore dans le futur</p>
+                {% elseif search_date != "now"|date("Y-m-d") %}
+                    <p class="text-white text-center mt-1">Bonne écoute !</p>
                 {% else %}
                     {% if count >= 10 %}
                         <p class="text-white">La playlist est pleine, reviens demain :)</p>
