@@ -77,7 +77,7 @@ class HomeController extends AbstractController
                     $userId = $userManager->create($_POST);
                     $_SESSION['user'] = $userManager->selectUserById($userId);
 
-                    header('Location: /?register=true');
+                    header('Location: /');
                 }
             } elseif ($_POST['date'] !== '') {
                 $isFromDate = true;
@@ -93,7 +93,6 @@ class HomeController extends AbstractController
             $ratings = $ratingManager->selectVote($_SESSION['user']['id']);
         }
         return $this->twig->render('Home/index.html.twig', [
-            'register_success' => $_GET['register'] ?? null,
             'songs'            => $songs,
             'has_already_post' => $hasAlreadyPost,
             'count'            => $songManager->countSongsOfByDay($searchDate),
