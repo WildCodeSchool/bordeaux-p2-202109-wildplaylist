@@ -43,14 +43,26 @@ class SongController extends AbstractController
     }
 
 
-    public function vote($songId)
+    public function like($songId)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($_SESSION) {
                 $songManager = new SongManager();
-                $songManager->voteFor($songId);
+                $songManager->likeFor($songId);
                 $ratingManager = new RatingManager();
-                $ratingManager->insertVote($songId, $_SESSION['user']['id']);
+                $ratingManager->insertLike($songId, $_SESSION['user']['id']);
+            }
+        }
+        header('Location:/');
+    }
+    public function dislike($songId)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($_SESSION) {
+                $songManager = new SongManager();
+                $songManager->dislikeFor($songId);
+                $ratingManager = new RatingManager();
+                $ratingManager->deleteLike($songId, $_SESSION['user']['id']);
             }
         }
         header('Location:/');
