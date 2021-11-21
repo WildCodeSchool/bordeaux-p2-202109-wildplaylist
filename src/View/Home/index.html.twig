@@ -18,7 +18,7 @@
                 <p id="demo"></p>
             </div>
         </div>
-        <div class="col-12 col-lg-5 bg-secondary shadow rounded" id="the-playlist-lecteur">
+        <div class="col-12 col-lg-5 bg-secondary" id="the-playlist-lecteur">
             <div class="p-2 flex-shrink-1">
                 {% if "now"|date("Y-m-d") < search_date  %}
                     <p class="text-white text-center mt-3">On est pas encore dans le futur</p>
@@ -51,13 +51,13 @@
                     {% set songUrl = '' %}
                     {% for song in songs %}
                         <li class="songs mt-2 d-flex align-items-center list-group-item bg-secondary text-white position-relative">
-                            <p class="rating-number position-absolute text-end">{% if song.rating == 0 %}{% else %}{{ song.rating }}{% endif %}</p>
+                            <p class="rating-number position-absolute text-end pt-3">{% if song.rating == 0 %}{% else %}{{ song.rating }}{% endif %}</p>
                             {% if session %}
                                 {% if song.id in ratings%}
                                     <i class="position-absolute heart-ranking-full fas fa-heart p-0"></i>
                                 {% else %}
                                 <form class="position-absolute" action='/rating?songId={{ song.id }}'  method='POST'>
-                                    <button class ="btn-rating ms-1 " name="rating">
+                                    <button class ="play-button ms-1 " name="rating">
                                         <i class="heart-ranking far fa-heart p-0 ms-3"></i>
                                     </button>
                                 </form>

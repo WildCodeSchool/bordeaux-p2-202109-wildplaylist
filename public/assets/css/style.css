@@ -10,6 +10,11 @@
     --color-primary: #fe5000;
     --color-primary-hover: #ff6f52;
     --color-btn: #bababc;
+    --color-btn-hover: #c4302b;
+}
+
+button {
+    border-width: 0;
 }
 
 .btn-primary {
@@ -96,7 +101,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 }
 
 .play-button:hover {
-    color: var(--bs-primary);
+    color: var(--color-btn-hover);
     background: none;
     border: none;
     padding: 0;
@@ -141,9 +146,29 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     color: var(--color-btn);
     margin-left: 20px;
 }
+.heart-ranking-full:hover {
+    color: var(--color-btn-hover);
+    background: none;
+    border: none;
+    padding: 0;
+}
+.heart-ranking-full:focus {
+    outline: 0;
+    border: none;
+}
 .heart-ranking {
     color: var(--color-btn);
     margin-left: 20px;
+}
+.heart-ranking:hover {
+    color: var(--color-btn-hover);
+    background: none;
+    border: none;
+    padding: 0;
+}
+.heart-ranking:focus {
+    outline: 0;
+    border: none;
 }
 .song-title {
     margin-left: 80px;
@@ -159,17 +184,26 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 
 .btn-rating {
     background: white;
-    font-size:0;
     color: inherit;
     border: none;
-    padding: 0;
-    font: inherit;
     cursor: pointer;
     outline: inherit;
     line-height: 0;
-    width: 0;
     margin-right:30px;
 }
+
+.btn-rating:hover {
+    color: var(--color-btn-hover);
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.btn-rating:focus {
+    outline: 0;
+    border: none;
+}
+
 .calendar-block {
     margin-left: 0.5rem;
 }
