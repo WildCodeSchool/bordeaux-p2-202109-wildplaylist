@@ -54,9 +54,18 @@ class SongManager extends AbstractManager
         $statement->execute();
         return $statement->fetchColumn();
     }
-    public function voteFor(int $songId): bool
+
+    public function likeFor(int $songId): bool
     {
         $statement = $this->pdo->prepare("UPDATE song SET rating = rating+1 WHERE id =:id");
+        $statement->bindValue('id', $songId, \PDO::PARAM_INT);
+
+        return $statement->execute();
+    }
+
+    public function dislikeFor(int $songId): bool
+    {
+        $statement = $this->pdo->prepare("UPDATE song SET rating = rating-1 WHERE id =:id");
         $statement->bindValue('id', $songId, \PDO::PARAM_INT);
 
         return $statement->execute();

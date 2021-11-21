@@ -19,6 +19,7 @@ return [
     'user/edit' => ['UserController', 'edit', ['id']],
     'logout' => ['UserController', 'logout',],
     'addSong' => ['SongController', 'add'],
-    'rating' => ['SongController', 'vote', ['songId']],
+    'like' => ['SongController', 'like', ['songId']],
     'deleteSong' => ['SongController', 'delete'],
+    'dislike' => ['SongController', 'dislike', ['songId']],
 ];
