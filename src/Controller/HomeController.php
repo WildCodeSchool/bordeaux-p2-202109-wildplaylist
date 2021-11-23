@@ -85,10 +85,12 @@ class HomeController extends AbstractController
             }
         }
         $songs = $songManager->showSongsByDate($searchDate);
+        $hasAlreadyPost = false;
         $ratings = 0;
         $dislike = 0;
 
         if (isset($_SESSION['user']['id'])) {
+            $hasAlreadyPost = $userManager->hasAlreadyPost($_SESSION['user']['id']);
             $ratings = $ratingManager->selectVote($_SESSION['user']['id']);
         }
         return $this->twig->render('Home/index.html.twig', [
@@ -99,6 +101,7 @@ class HomeController extends AbstractController
             'ratings'          => $ratings,
             'dislike'          => $dislike,
             'search_date'      => $searchDate,
+            'has_already_post' => $hasAlreadyPost,
         ]);
     }
 }
